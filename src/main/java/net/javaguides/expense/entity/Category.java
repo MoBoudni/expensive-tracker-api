@@ -1,35 +1,42 @@
 package net.javaguides.expense.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-/**
- * Entity-Klasse für Ausgaben-Kategorien.
- * Repräsentiert eine Kategorie in der Ausgabenverwaltung (z.B. "Lebensmittel", "Transport", etc.)
- * Diese Klasse wird von JPA/Hibernate verwendet, um die Datenbank-Tabelle "categories" zu verwalten.
- */
-@Setter                       // Lombok: Generiert automatisch Setter-Methoden für alle Felder
-@Getter                       // Lombok: Generiert automatisch Getter-Methoden für alle Felder
-@NoArgsConstructor            // Lombok: Generiert automatisch einen parameterlosen Konstruktor
-@AllArgsConstructor           // Lombok: Generiert automatisch einen Konstruktor mit allen Parametern
-@Entity                       // JPA: Markiert diese Klasse als Datenbank-Entity
-@Table(name = "categories")   // JPA: Definiert den Namen der Datenbank-Tabelle
+
+@Entity
+@Table(name = "categories")
 public class Category {
 
-    /**
-     * Eindeutige ID der Kategorie (Primärschlüssel)
-     * Wird automatisch von der Datenbank generiert
-     */
-    @Id                                                  // JPA: Markiert dieses Feld als Primärschlüssel
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // JPA: Auto-Increment-Strategie für MySQL
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    /**
-     * Name der Kategorie (z.B. "Lebensmittel", "Transport")
-     * Darf nicht null sein und muss eindeutig in der Datenbank sein
-     */
-    @Column(nullable = false, unique = true)             // JPA: Spalten-Definition - nicht null und eindeutig
+    @Column(nullable = false, unique = true, length = 100)
     private String name;
+
+    // 🔹 Standard-Konstruktor für JPA
+    public Category() {
+    }
+
+    // 🔹 Konstruktor für Mapper/DTO
+    public Category(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    // 🔹 Getter und Setter
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
