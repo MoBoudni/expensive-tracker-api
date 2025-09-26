@@ -407,7 +407,7 @@ public class HomeView extends VerticalLayout {
      * Erstellt die Haupt-Karte für das Kategorien-Grid.
      *
      * Diese Karte enthält:
-     * 
+     *
      *   Header mit Titel "Kategorien Übersicht"
      *   Das konfigurierte Grid mit allen Kategorien
      *
